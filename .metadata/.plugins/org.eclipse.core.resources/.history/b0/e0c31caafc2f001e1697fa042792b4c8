@@ -1,0 +1,53 @@
+package com.example.demo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Arrays;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+public class ArrayControllerTest {
+	 
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@Test
+    public void testArePermutations_whenPermutations() throws Exception {
+        ArrayInput input = new ArrayInput(Arrays.asList('a', 'b', 'c'), Arrays.asList('b', 'c', 'a'));
+        mockMvc.perform(post("/ispermuted")
+                .content(asJsonString(input))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+    }
+
+    @Test
+    public void testArePermutations_whenNotPermutations() throws Exception {
+        ArrayInput input = new ArrayInput(Arrays.asList('a', 'b', 'c'), Arrays.asList('b', 'c', 'd'));
+        mockMvc.perform(post("/ispermuted")
+                .content(asJsonString(input))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("false"));
+    }
+    
+    //Converts a Java object into JSON representation
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+	
+}

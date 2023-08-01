@@ -1,0 +1,55 @@
+package com.example.demo;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import com.example.demo.services.PrintXService;
+
+public class PrintXTest {
+    @Test
+    public void testPrintX0() {
+    	
+    	String expectedFor0 = "";
+    
+        
+          assertEquals(expectedFor0, PrintXService.printX(0));
+    }
+
+    
+    
+    @Test
+    public void testPrintX1() {
+    	
+  
+    	String expectedFor1 = "X";
+    		
+        assertEquals(expectedFor1, PrintXService.printX(1));
+       
+    }
+    
+    @Test
+    public void testPrintX3() {
+    	
+    
+        String expectedFor3 = 
+            "X  X\n" +
+            " X\n" + 
+            "X  X";
+
+        
+      
+        assertEquals(expectedFor3, PrintXService.printX(3));
+
+    }
+    
+    @Test
+    public void testPrintX5() {
+    	
+        String expectedFor5 = 
+            "X    X\n" +
+            " X  X\n" + 
+            "  X\n" +
+            " X  X\n" +
+            "X    X";
+        
+        assertEquals(expectedFor5, PrintXService.printX(5));
+    }
+}
