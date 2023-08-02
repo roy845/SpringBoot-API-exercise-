@@ -39,6 +39,7 @@ Hello
 
 This API checks if two arrays are permutations of each other. It reads the two lists only once and does not use any "sort" methods. it uses HashMap data structure to solve this problem.
 
+```java
 Example1:
 
 curl --location --request POST 'localhost:8080/ispermuted'
@@ -77,6 +78,7 @@ curl --location --request POST 'localhost:8080/ispermuted' \
 } '
 
 Response: false
+```
 
 ## Java Service
 
@@ -95,7 +97,7 @@ X   X
   X
  X X
 X   X
-
+```
 
 Testing
 Unit tests are included for the API and the Java service.
@@ -103,4 +105,3 @@ mockMvc is used for the API tests and Jnit5 for the Java service.
 
 Optional
 Basic authentication is added to the Permutation Check API for additional security.
-```
