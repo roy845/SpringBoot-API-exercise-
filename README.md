@@ -19,7 +19,7 @@ This project is based on Spring Boot. You can create a Spring Boot project from 
 
 ## Usage
 
-This project contains two APIs and one Java service.
+This project contains two APIs and one Java service as well as unit tests for the Permutation Check API and for the Java service.
 
 ## APIs
 
@@ -37,9 +37,9 @@ Hello
 
 ### Permutation Check API
 
-This API checks if two arrays are permutations of each other. It reads the two lists only once and does not use any "sort" methods.
+This API checks if two arrays are permutations of each other. It reads the two lists only once and does not use any "sort" methods. it uses HashMap data structure to solve this problem.
 
-Example:
+Example1:
 
 curl --location --request POST 'localhost:8080/ispermuted'
 --header 'Content-Type: application/json'
@@ -56,9 +56,27 @@ curl --location --request POST 'localhost:8080/ispermuted'
 ]
 } '
 
-Response:
+Response: true
 
-true
+Example 2:
+
+curl --location --request POST 'localhost:8080/ispermuted' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"list1" : [
+"a" ,
+"b" ,
+"c"
+],
+"list2" : [
+"b" ,
+"c" ,
+"a",
+"a"
+]
+} '
+
+Response: false
 
 ## Java Service
 
@@ -80,7 +98,8 @@ X   X
 
 
 Testing
-Unit tests are included for the APIs and the Java service.
+Unit tests are included for the API and the Java service.
+mockMvc is used for the API tests and Jnit5 for the Java service.
 
 Optional
 basic authentication is added to the Permutation Check API for additional security.
