@@ -17,8 +17,7 @@ public class PrintXService {
 	            output.append("\n");
 	        }
 	    }
-	    System.out.println(output.toString());
-	    System.out.println("\n\n");
+	   
 	    return output.toString();
 	}
 }
